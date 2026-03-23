@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keona & Celicia | Royal Twin Dedication</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Keona & Celicia | Blessed & Dedicated</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -14,9 +14,9 @@
             <div class="flap"></div>
             <div class="pocket"></div>
             <div class="letter">
-                <p class="elegant-text">An Invitation to</p>
-                <p class="elegant-text">A Fairytale Day...</p>
-                <small>Tap to Open</small>
+                <p class="elegant-text">"Blessed & Dedicated"</p>
+                <p class="elegant-subtitle">You are invited</p>
+                <small class="tap-hint">Tap to Open</small>
             </div>
             <div class="heart">✿</div>
         </div>
@@ -28,8 +28,8 @@
         <div id="floating-bg-layer"></div>
         
         <header class="header">
-            <div class="fairy-crown">👑</div>
-            <p class="subtitle">A Royal Dedication for our Princesses</p>
+            <div class="fairy-crown">✨</div>
+            <p class="subtitle">A Dedication to Our Twins</p>
             <h1 class="elegant-title">Keona Hana & Celicia Hana</h1>
             
             <div id="countdown" class="countdown-container">
@@ -38,47 +38,57 @@
                 <div class="time-box"><span id="mins">00</span><small>Min</small></div>
                 <div class="time-box"><span id="secs">00</span><small>Sec</small></div>
             </div>
-            <p class="actual-date">Tuesday, April 14, 2026</p>
+            <p class="actual-date">Tuesday | April 14, 2026</p>
         </header>
 
         <nav class="tabs">
-            <button class="tab-link active" onclick="openTab(event, 'photos')">Our Princesses</button>
-            <button class="tab-link" onclick="openTab(event, 'venue')">The Kingdom</button>
-            <button class="tab-link" onclick="openTab(event, 'wear')">Royal Attire</button>
+            <button class="tab-link active" onclick="openTab(event, 'photos')">Blessings</button>
+            <button class="tab-link" onclick="openTab(event, 'venue')">Venue</button>
+            <button class="tab-link" onclick="openTab(event, 'wear')">Attire</button>
         </nav>
 
-        <div class="card-body">
-            <section id="photos" class="tab-content active">
-                <div class="image-grid">
-                    <div class="img-box">✨ [Keona Photo]</div>
-                    <div class="img-box">✨ [Celicia Photo]</div>
-                </div>
-                <p class="description elegant-text">"Two little fairies brought magic to our lives."</p>
-            </section>
+        <div class="card-scroll-area">
+            <div class="card-body">
+                
+                <section id="photos" class="tab-content active">
+                    <p class="dedication-quote">“God blessed us with two beautiful lives, and today we lovingly dedicate them to Him, placing their future in His faithful hands.”</p>
+                    <div class="image-grid">
+                        <div class="img-box">🕊️</div>
+                        <div class="img-box">🕊️</div>
+                    </div>
+                    <p class="scripture-text">“For this child we prayed, and the Lord has granted our request.”</p>
+                    <p class="scripture-ref">1 SAMUEL 1:27</p>
+                </section>
 
-            <section id="venue" class="tab-content">
-                <h3 class="elegant-text">MJN Farm and Cafe</h3>
-                <a href="https://maps.app.goo.gl/pEc54mavWuTwfza58" target="_blank" class="map-link">
-                    <p>Baikingon, Cagayan De Oro City</p>
-                    <p>9000 Misamis Oriental, Philippines</p>
-                    <div class="venue-box">📍 Click to View Map</div>
-                </a>
-            </section>
+                <section id="venue" class="tab-content">
+                    <div class="center-stack">
+                        <h3 class="elegant-text">MJN Farm and Cafe</h3>
+                        <p class="venue-address">Baikingon, Cagayan De Oro City<br>9000 Misamis Oriental</p>
+                        <a href="https://maps.app.goo.gl/pEc54mavWuTwfza58" target="_blank" class="map-link">
+                            <div class="venue-box">📍 Tap to View Location</div>
+                        </a>
+                    </div>
+                </section>
 
-            <section id="wear" class="tab-content">
-                <h3 class="elegant-text">Boho Fairy Style</h3>
-                <div class="palette-container">
-                    <div class="swatch" style="background: #6d4c41;"></div>
-                    <div class="swatch" style="background: #bcaaa4;"></div>
-                    <div class="swatch" style="background: #d4a373;"></div>
-                    <div class="swatch" style="background: #ffffff; border: 1px solid #ddd;"></div>
-                </div>
-                <p class="wear-tip">Colors: Chocolate, Tan, Gold, and White</p>
-            </section>
+                <section id="wear" class="tab-content">
+                    <div class="center-stack">
+                        <h3 class="elegant-text">Boho Chic Attire</h3>
+                        <p class="wear-description">We invite you to wear our celebration colors:</p>
+                        <div class="palette-container">
+                            <div class="swatch" style="background: #6d4c41;"></div>
+                            <div class="swatch" style="background: #bcaaa4;"></div>
+                            <div class="swatch" style="background: #d4a373;"></div>
+                            <div class="swatch" style="background: #ffffff; border: 1px solid #ddd;"></div>
+                        </div>
+                        <p class="wear-tip">BROWN • TAN • GOLD • WHITE</p>
+                    </div>
+                </section>
+                
+            </div>
         </div>
 
         <footer>
-            <button class="rsvp-button">RSVP TO THE BALL</button>
+            <button class="rsvp-button">CONFIRM ATTENDANCE</button>
         </footer>
     </div>
 
