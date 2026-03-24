@@ -43,8 +43,10 @@
 
         <nav class="tabs">
             <button class="tab-link active" onclick="openTab(event, 'photos')">Blessings</button>
-            <button class="tab-link" onclick="event.stopPropagation(); openTab(event, 'venue')">Venue</button>
-            <button class="tab-link" onclick="event.stopPropagation(); openTab(event, 'wear')">Attire</button>
+            <button class="tab-link" onclick="openTab(event, 'venue')">Venue</button>
+            <button class="tab-link" onclick="openTab(event, 'wear')">Attire</button>
+            <button class="tab-link" onclick="openTab(event, 'wishes')">Wishes</button>
+            <button class="tab-link" onclick="openTab(event, 'gifts')">Gifts</button>
         </nav>
 
         <div class="card-scroll-area">
@@ -56,19 +58,19 @@
                     <div class="twin-grid">
                         <div class="twin-column">
                             <span class="column-label">Keona Hana</span>
-                            <div class="img-box clickable" onclick="openLightbox(0)"><img src="keona1.jpg" alt="Keona 1"></div>
-                            <div class="img-box clickable" onclick="openLightbox(1)"><img src="keona2.jpg" alt="Keona 2"></div>
-                            <div class="img-box clickable" onclick="openLightbox(2)"><img src="keona3.jpg" alt="Keona 3"></div>
-                            <div class="img-box clickable" onclick="openLightbox(3)"><img src="keona4.jpg" alt="Keona 4"></div>
-                            <div class="img-box clickable" onclick="openLightbox(4)"><img src="keona5.jpg" alt="Keona 5"></div>
+                            <div class="img-box clickable" onclick="openLightbox(0)"><img src="images/keona1.jpg" alt="Keona 1"></div>
+                            <div class="img-box clickable" onclick="openLightbox(1)"><img src="images/keona2.jpg" alt="Keona 2"></div>
+                            <div class="img-box clickable" onclick="openLightbox(2)"><img src="images/keona3.jpg" alt="Keona 3"></div>
+                            <div class="img-box clickable" onclick="openLightbox(3)"><img src="images/keona4.jpg" alt="Keona 4"></div>
+                            <div class="img-box clickable" onclick="openLightbox(4)"><img src="images/keona5.jpg" alt="Keona 5"></div>
                         </div>
                         <div class="twin-column">
                             <span class="column-label">Celicia Hana</span>
-                            <div class="img-box clickable" onclick="openLightbox(5)"><img src="celicia1.jpg" alt="Celicia 1"></div>
-                            <div class="img-box clickable" onclick="openLightbox(6)"><img src="celicia2.jpg" alt="Celicia 2"></div>
-                            <div class="img-box clickable" onclick="openLightbox(7)"><img src="celicia3.jpg" alt="Celicia 3"></div>
-                            <div class="img-box clickable" onclick="openLightbox(8)"><img src="celicia4.jpg" alt="Celicia 4"></div>
-                            <div class="img-box clickable" onclick="openLightbox(9)"><img src="celicia5.jpg" alt="Celicia 5"></div>
+                            <div class="img-box clickable" onclick="openLightbox(5)"><img src="images/celicia1.jpg" alt="Celicia 1"></div>
+                            <div class="img-box clickable" onclick="openLightbox(6)"><img src="images/celicia2.jpg" alt="Celicia 2"></div>
+                            <div class="img-box clickable" onclick="openLightbox(7)"><img src="images/celicia3.jpg" alt="Celicia 3"></div>
+                            <div class="img-box clickable" onclick="openLightbox(8)"><img src="images/celicia4.jpg" alt="Celicia 4"></div>
+                            <div class="img-box clickable" onclick="openLightbox(9)"><img src="images/celicia5.jpg" alt="Celicia 5"></div>
                         </div>
                     </div>
 
@@ -80,7 +82,7 @@
                     <div class="center-stack">
                         <h3 class="elegant-text">MJN Farm and Cafe</h3>
                         <p class="venue-address">Baikingon, Cagayan De Oro City<br>9000 Misamis Oriental</p>
-                        <a href="https://maps.app.goo.gl/pEc54mavWuTwfza58" target="_blank" class="map-link">
+                        <a href="https://maps.google.com" target="_blank" class="map-link">
                             <div class="venue-box">📍 Tap to View Location</div>
                         </a>
                     </div>
@@ -99,12 +101,35 @@
                         <p class="wear-tip">BROWN • TAN • GOLD • WHITE</p>
                     </div>
                 </section>
+
+                <section id="wishes" class="tab-content">
+                    <div class="center-stack">
+                        <h3 class="elegant-text">Wishes & Greetings</h3>
+                        <div class="comment-form">
+                            <input type="text" id="guest-name" placeholder="Your Name" class="aesthetic-input">
+                            <textarea id="guest-message" placeholder="Write your blessing here..." class="aesthetic-input" rows="3"></textarea>
+                            <button class="submit-wish" onclick="saveWish()">Send Blessing</button>
+                        </div>
+                        <div id="comments-display" class="comments-container"></div>
+                    </div>
+                </section>
+
+                <section id="gifts" class="tab-content">
+                    <div class="center-stack">
+                        <h3 class="elegant-text">Love & Generosity</h3>
+                        <p class="gift-message">Your presence at our twins' dedication is the greatest gift of all. However, should you wish to honor Keona and Celicia with a token of love, the KC Twins are very open to accepting donations as they begin their journey of faith. <br><br><b>Every blessing is deeply appreciated.</b></p>
+                        <div class="qr-container">
+                            <img src="images/qrcode.jpg" alt="Gift QR Code" class="qr-image">
+                            <p class="wear-tip">SCAN TO SEND A GIFT</p>
+                        </div>
+                    </div>
+                </section>
                 
             </div>
         </div>
 
         <footer>
-            <button class="rsvp-button">CONFIRM ATTENDANCE</button>
+            <button class="rsvp-button" onclick="goToWishes()">SEND WISHES AND GREETINGS</button>
         </footer>
     </div>
 

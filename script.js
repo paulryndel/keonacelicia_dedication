@@ -8,6 +8,7 @@ function openEnvelope() {
         mainSite.classList.remove('hidden');
         setTimeout(() => mainSite.style.opacity = '1', 50);
         startContinuousMagic();
+        loadWishes(); 
     }, 1000);
 }
 
@@ -34,7 +35,7 @@ function animateParticles() {
     particles.forEach((p, i) => {
         p.x += p.vx; 
         p.y += p.vy; 
-        p.vy += 0.04; // Reduced gravity for a slower, floating descent
+        p.vy += 0.04; 
         ctx.fillStyle = p.color;
         ctx.font = p.size + 'px serif';
         ctx.fillText('✿', p.x, p.y);
@@ -86,27 +87,25 @@ function openTab(evt, tabId) {
     const links = document.getElementsByClassName("tab-link");
     for (let l of links) l.classList.remove("active");
     document.getElementById(tabId).style.display = "flex";
-    evt.currentTarget.classList.add("active");
+    if (evt) evt.currentTarget.classList.add("active");
 }
 
 window.addEventListener('mousedown', (e) => {
-    if(e.target.closest('.tab-link') || e.target.closest('.rsvp-button')) return; 
+    if(e.target.closest('.tab-link') || e.target.closest('.rsvp-button') || e.target.closest('.submit-wish')) return; 
     spawnFlowers(e.clientX, e.clientY);
 });
 
 window.addEventListener('touchstart', (e) => {
-    if(e.target.closest('.tab-link') || e.target.closest('.rsvp-button')) return;
+    if(e.target.closest('.tab-link') || e.target.closest('.rsvp-button') || e.target.closest('.submit-wish')) return;
     spawnFlowers(e.touches.clientX, e.touches.clientY);
 });
 
 function spawnFlowers(x, y) {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    // Increased particle count slightly for more emphasis
     for (let i = 0; i < 8; i++) {
         particles.push({
             x: x, y: y,
-            // Slower initial "pop" velocity
             vx: (Math.random() - 0.5) * 4, 
             vy: (Math.random() - 0.5) * 4 - 1,
             size: Math.random() * 14 + 12,
@@ -117,9 +116,10 @@ function spawnFlowers(x, y) {
 }
 
 let currentImageIndex = 0;
+/* Photos are now sourced from the images/ folder */
 const allImages = [
-    'keona1.jpg', 'keona2.jpg', 'keona3.jpg', 'keona4.jpg', 'keona5.jpg',
-    'celicia1.jpg', 'celicia2.jpg', 'celicia3.jpg', 'celicia4.jpg', 'celicia5.jpg'
+    'images/keona1.jpg', 'images/keona2.jpg', 'images/keona3.jpg', 'images/keona4.jpg', 'images/keona5.jpg',
+    'images/celicia1.jpg', 'images/celicia2.jpg', 'images/celicia3.jpg', 'images/celicia4.jpg', 'images/celicia5.jpg'
 ];
 
 function openLightbox(index) {
@@ -140,4 +140,45 @@ function changeSlide(direction, event) {
     if (currentImageIndex >= allImages.length) currentImageIndex = 0;
     if (currentImageIndex < 0) currentImageIndex = allImages.length - 1;
     document.getElementById('lightbox-img').src = allImages[currentImageIndex];
+}
+
+function goToWishes() {
+    const wishBtn = Array.from(document.querySelectorAll('.tab-link')).find(btn => btn.innerText.includes('WISHES'));
+    if (wishBtn) wishBtn.click();
+}
+
+function saveWish() {
+    const nameInput = document.getElementById('guest-name');
+    const messageInput = document.getElementById('guest-message');
+    
+    if (nameInput.value.trim() === "" || messageInput.value.trim() === "") {
+        alert("Please fill in your name and message! ✨");
+        return;
+    }
+
+    const newWish = {
+        name: nameInput.value,
+        message: messageInput.value,
+        date: new Date().toLocaleDateString()
+    };
+
+    let existingWishes = JSON.parse(localStorage.getItem('twinsWishes')) || [];
+    existingWishes.unshift(newWish);
+    localStorage.setItem('twinsWishes', JSON.stringify(existingWishes));
+
+    nameInput.value = "";
+    messageInput.value = "";
+    loadWishes();
+}
+
+function loadWishes() {
+    const container = document.getElementById('comments-display');
+    const existingWishes = JSON.parse(localStorage.getItem('twinsWishes')) || [];
+    
+    container.innerHTML = existingWishes.map(wish => `
+        <div class="wish-card">
+            <p class="wish-text">"${wish.message}"</p>
+            <p class="wish-author">— ${wish.name}</p>
+        </div>
+    `).join('');
 }
