@@ -19,6 +19,7 @@ function openEnvelope() {
 const canvas = document.getElementById('flower-fireworks');
 const ctx = canvas.getContext('2d');
 let particles = [];
+let celestialElements = [];
 
 function createFlowerExplosion() {
     canvas.width = window.innerWidth;
@@ -36,6 +37,8 @@ function createFlowerExplosion() {
 
 function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Render Flower Particles
     particles.forEach((p, i) => {
         p.x += p.vx; 
         p.y += p.vy; 
@@ -45,8 +48,53 @@ function animateParticles() {
         ctx.fillText('✿', p.x, p.y);
         if (p.y > canvas.height || p.x < 0 || p.x > canvas.width) particles.splice(i, 1);
     });
-    if (particles.length > 0) requestAnimationFrame(animateParticles);
+
+    // Render Hearts, Moons, and Stars (Slow-mo)
+    celestialElements.forEach((el, i) => {
+        el.x += el.vx;
+        el.y += el.vy;
+        el.rotation += el.rotSpeed;
+        
+        ctx.save();
+        ctx.translate(el.x, el.y);
+        ctx.rotate(el.rotation);
+        ctx.fillStyle = el.color;
+        ctx.font = el.size + 'px serif';
+        ctx.fillText(el.symbol, 0, 0);
+        ctx.restore();
+        
+        if (el.y < -50 || el.x < -50 || el.x > canvas.width + 50) celestialElements.splice(i, 1);
+    });
+
+    if (particles.length > 0 || celestialElements.length > 0) requestAnimationFrame(animateParticles);
 }
+
+// Function to trigger celestial elements when names are clicked
+document.addEventListener('DOMContentLoaded', () => {
+    const title = document.querySelector('.elegant-title');
+    if(title) {
+        title.style.cursor = 'pointer';
+        title.addEventListener('click', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const symbols = ['❤', '🌙', '⭐', '✨'];
+            for (let i = 0; i < 16; i++) {
+                celestialElements.push({
+                    x: Math.random() * canvas.width,
+                    y: canvas.height + 50,
+                    vx: (Math.random() - 0.5) * 1.2, 
+                    vy: (Math.random() * -0.8) - 0.4, // Slow-mo upward drift
+                    size: Math.random() * 15 + 20,
+                    symbol: symbols[Math.floor(Math.random() * symbols.length)],
+                    rotation: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.02,
+                    color: i % 2 === 0 ? '#FFD1DC' : '#d4a373' // Pink and Boho Tan
+                });
+            }
+            animateParticles();
+        });
+    }
+});
 
 function startContinuousMagic() {
     const bg = document.getElementById('floating-bg-layer');
@@ -95,12 +143,12 @@ function openTab(evt, tabId) {
 }
 
 window.addEventListener('mousedown', (e) => {
-    if(e.target.closest('.tab-link') || e.target.closest('.rsvp-button') || e.target.closest('.submit-wish')) return; 
+    if(e.target.closest('.tab-link') || e.target.closest('.rsvp-button') || e.target.closest('.submit-wish') || e.target.closest('.elegant-title')) return; 
     spawnFlowers(e.clientX, e.clientY);
 });
 
 window.addEventListener('touchstart', (e) => {
-    if(e.target.closest('.tab-link') || e.target.closest('.rsvp-button') || e.target.closest('.submit-wish')) return;
+    if(e.target.closest('.tab-link') || e.target.closest('.rsvp-button') || e.target.closest('.submit-wish') || e.target.closest('.elegant-title')) return;
     spawnFlowers(e.touches.clientX, e.touches.clientY);
 });
 
