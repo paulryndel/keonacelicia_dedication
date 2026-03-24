@@ -1,12 +1,9 @@
 function openEnvelope() {
     const overlay = document.getElementById('envelope-overlay');
     const mainSite = document.getElementById('main-site');
-    
-    // Start the flower explosion immediately upon clicking
     createFlowerExplosion();
     
-    // We wait 2.5 seconds (2500ms) to allow the CSS "slow-mo" 
-    // animation of the flap and letter to finish so guests can read it.
+    // Pause for 2.5s to let guests read the glowing letter
     setTimeout(() => {
         overlay.style.opacity = '0';
         setTimeout(() => {
@@ -15,7 +12,7 @@ function openEnvelope() {
             setTimeout(() => mainSite.style.opacity = '1', 50);
             startContinuousMagic();
             loadWishes();
-        }, 1000); // Time for the overlay to fade out completely
+        }, 1000);
     }, 2500); 
 }
 
@@ -150,11 +147,6 @@ function changeSlide(direction, event) {
     if (currentImageIndex >= allImages.length) currentImageIndex = 0;
     if (currentImageIndex < 0) currentImageIndex = allImages.length - 1;
     document.getElementById('lightbox-img').src = allImages[currentImageIndex];
-}
-
-function goToWishes() {
-    const wishBtn = Array.from(document.querySelectorAll('.tab-link')).find(btn => btn.innerText.includes('WISHES'));
-    if (wishBtn) wishBtn.click();
 }
 
 function saveWish() {

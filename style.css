@@ -196,9 +196,7 @@ html, body {
     transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
     z-index: 4; 
 }
-
 .pocket { position: absolute; bottom: 0; width: 100%; height: 100%; background: #a38f85; clip-path: polygon(0 40%, 50% 100%, 100% 40%, 100% 100%, 0 100%); z-index: 3; }
-
 .letter { 
     position: absolute; bottom: 5px; left: 10px; width: 260px; height: 170px; 
     background: white; text-align: center; display: flex; flex-direction: column; 
@@ -206,7 +204,6 @@ html, body {
     padding: 10px; 
     transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .heart { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 35px; color: white; z-index: 5; transition: 0.5s; }
 .elegant-text { font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: var(--dark-brown); margin: 0; }
 .elegant-subtitle { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--boho-tan); margin-top: 10px; font-weight: 600; }
@@ -216,20 +213,26 @@ html, body {
     transform: rotateX(180deg); 
     z-index: 1;
 }
-
-/* --- ADDED GLOW EFFECT HERE --- */
 .envelope:hover .letter { 
     transform: translateY(-130px); 
     z-index: 10;
-    box-shadow: 0 0 20px 5px rgba(212, 163, 115, 0.6); /* Soft, elegant glow */
+    box-shadow: 0 0 20px 5px rgba(212, 163, 115, 0.6);
+}
+.envelope:hover .heart { opacity: 0; }
+
+.rsvp-button { 
+    background: var(--dark-brown); 
+    color: white; 
+    padding: 18px; 
+    border-radius: 40px; 
+    border: none; 
+    font-weight: 600; 
+    font-size: 0.8rem; 
+    letter-spacing: 1px; 
+    box-shadow: 0 10px 25px rgba(109, 76, 65, 0.2); 
+    cursor: pointer;
 }
 
-.envelope:hover .heart {
-    opacity: 0;
-}
-
-footer { padding: 20px 30px; }
-.rsvp-button { background: var(--dark-brown); color: white; width: 100%; padding: 18px; border-radius: 40px; border: none; font-weight: 600; font-size: 0.8rem; letter-spacing: 1px; box-shadow: 0 10px 25px rgba(109, 76, 65, 0.2); }
 .moving-element { position: fixed; pointer-events: none; z-index: 1; animation: floatUp linear forwards; }
 @keyframes floatUp { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 20% { opacity: 0.3; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
