@@ -1,15 +1,22 @@
 function openEnvelope() {
     const overlay = document.getElementById('envelope-overlay');
     const mainSite = document.getElementById('main-site');
+    
+    // Start the flower explosion immediately upon clicking
     createFlowerExplosion();
-    overlay.style.opacity = '0';
+    
+    // We wait 2.5 seconds (2500ms) to allow the CSS "slow-mo" 
+    // animation of the flap and letter to finish so guests can read it.
     setTimeout(() => {
-        overlay.style.display = 'none';
-        mainSite.classList.remove('hidden');
-        setTimeout(() => mainSite.style.opacity = '1', 50);
-        startContinuousMagic();
-        loadWishes();
-    }, 1000);
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+            overlay.style.display = 'none';
+            mainSite.classList.remove('hidden');
+            setTimeout(() => mainSite.style.opacity = '1', 50);
+            startContinuousMagic();
+            loadWishes();
+        }, 1000); // Time for the overlay to fade out completely
+    }, 2500); 
 }
 
 const canvas = document.getElementById('flower-fireworks');

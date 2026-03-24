@@ -184,17 +184,50 @@ html, body {
 .tabs { display: flex; justify-content: center; gap: 15px; margin: 20px 0; width: 100%; border-bottom: 1px solid #f2f2f2; }
 .tab-link { background: none; border: none; font-size: 0.65rem; padding: 10px 5px; color: var(--boho-tan); cursor: pointer; text-transform: uppercase; letter-spacing: 1.5px; }
 .tab-link.active { color: var(--dark-brown); font-weight: 600; border-bottom: 2px solid var(--boho-gold); }
+
 .envelope-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--soft-white); display: flex; justify-content: center; align-items: center; z-index: 2000; transition: 1s ease; }
 .envelope { width: 280px; height: 180px; background: var(--boho-tan); position: relative; border-radius: 4px; cursor: pointer; }
-.flap { position: absolute; top: 0; width: 0; height: 0; border-left: 140px solid transparent; border-right: 140px solid transparent; border-top: 100px solid var(--boho-tan); transform-origin: top; transition: 0.4s; z-index: 4; }
+.flap { 
+    position: absolute; top: 0; width: 0; height: 0; 
+    border-left: 140px solid transparent; 
+    border-right: 140px solid transparent; 
+    border-top: 100px solid var(--boho-tan); 
+    transform-origin: top; 
+    transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
+    z-index: 4; 
+}
+
 .pocket { position: absolute; bottom: 0; width: 100%; height: 100%; background: #a38f85; clip-path: polygon(0 40%, 50% 100%, 100% 40%, 100% 100%, 0 100%); z-index: 3; }
-.letter { position: absolute; bottom: 5px; left: 10px; width: 260px; height: 170px; background: white; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 2; border-radius: 2px; padding: 10px; }
-.heart { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 35px; color: white; z-index: 5; }
+
+.letter { 
+    position: absolute; bottom: 5px; left: 10px; width: 260px; height: 170px; 
+    background: white; text-align: center; display: flex; flex-direction: column; 
+    justify-content: center; align-items: center; z-index: 2; border-radius: 2px; 
+    padding: 10px; 
+    transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.heart { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 35px; color: white; z-index: 5; transition: 0.5s; }
 .elegant-text { font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: var(--dark-brown); margin: 0; }
 .elegant-subtitle { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--boho-tan); margin-top: 10px; font-weight: 600; }
 .tap-hint { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 1px; color: #ccc; margin-top: 15px; }
-.envelope:hover .flap { transform: rotateX(180deg); }
-.envelope:hover .letter { transform: translateY(-60px); }
+
+.envelope:hover .flap { 
+    transform: rotateX(180deg); 
+    z-index: 1;
+}
+
+/* --- ADDED GLOW EFFECT HERE --- */
+.envelope:hover .letter { 
+    transform: translateY(-130px); 
+    z-index: 10;
+    box-shadow: 0 0 20px 5px rgba(212, 163, 115, 0.6); /* Soft, elegant glow */
+}
+
+.envelope:hover .heart {
+    opacity: 0;
+}
+
 footer { padding: 20px 30px; }
 .rsvp-button { background: var(--dark-brown); color: white; width: 100%; padding: 18px; border-radius: 40px; border: none; font-weight: 600; font-size: 0.8rem; letter-spacing: 1px; box-shadow: 0 10px 25px rgba(109, 76, 65, 0.2); }
 .moving-element { position: fixed; pointer-events: none; z-index: 1; animation: floatUp linear forwards; }
