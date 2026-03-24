@@ -24,13 +24,12 @@ html, body {
 .elegant-title { font-family: 'Dancing Script', cursive; font-size: 2rem; color: var(--boho-gold); margin: 5px 0; }
 .subtitle { text-transform: uppercase; font-size: 0.65rem; letter-spacing: 3px; color: var(--boho-tan); font-weight: 600; margin-bottom: 5px; }
 
-/* Perfect Centering Logic */
 .card-scroll-area { 
     flex: 1; 
     overflow-y: auto; 
     display: flex; 
     flex-direction: column; 
-    align-items: center; /* Horizontally center tabs */
+    align-items: center; 
 }
 
 .tab-content { 
@@ -38,7 +37,7 @@ html, body {
     width: 100%; 
     padding: 20px 0;
     flex-direction: column; 
-    align-items: center; /* Center children of tab */
+    align-items: center; 
     text-align: center; 
     animation: fadeIn 0.8s ease forwards;
 }
@@ -53,68 +52,106 @@ html, body {
     width: 100%;
 }
 
-/* Tab Specifics */
 .dedication-quote { font-size: 0.85rem; line-height: 1.8; color: var(--dark-brown); margin: 0 0 25px 0; max-width: 280px; }
 .scripture-text { font-family: 'Dancing Script', cursive; font-size: 1.3rem; margin: 20px 0 5px 0; color: var(--boho-gold); }
 .scripture-ref { font-size: 0.65rem; font-weight: 600; letter-spacing: 2px; color: var(--boho-tan); }
 
-/* Venue Tab Refinement */
-.venue-address { 
-    font-size: 0.9rem; 
-    line-height: 1.6; 
-    color: var(--dark-brown); 
-    margin: 15px 0;
+/* --- Updated Photo Grid & Floating Shadows --- */
+.twin-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; 
+    width: 90%; 
+    max-width: 320px; 
+    margin-bottom: 20px;
 }
-.venue-box { 
-    background: #faf7f2; 
-    width: 240px; 
-    padding: 15px; 
-    border-radius: 20px; 
-    border: 1px dashed var(--boho-tan); 
-    font-size: 0.8rem; 
-    color: var(--dark-brown); 
-    font-weight: 600;
-}
-.map-link { text-decoration: none; }
+.twin-column { display: flex; flex-direction: column; gap: 15px; }
+.column-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: var(--boho-tan); margin-bottom: 5px; font-weight: 600; }
 
-/* Attire Tab Refinement */
+.img-box.clickable { 
+    cursor: pointer; 
+    overflow: hidden; 
+    height: 115px; 
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid rgba(188, 170, 164, 0.2);
+    /* The "Floating" Shadow */
+    box-shadow: 0 10px 20px rgba(109, 76, 65, 0.12);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation: zoomIn 0.8s ease backwards;
+}
+
+/* Staggering the zoom animation for each photo */
+.img-box.clickable:nth-child(2) { animation-delay: 0.1s; }
+.img-box.clickable:nth-child(3) { animation-delay: 0.2s; }
+.img-box.clickable:nth-child(4) { animation-delay: 0.3s; }
+.img-box.clickable:nth-child(5) { animation-delay: 0.4s; }
+.img-box.clickable:nth-child(6) { animation-delay: 0.5s; }
+
+.img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+.img-box.clickable:hover { 
+    transform: translateY(-5px) scale(1.02); 
+    box-shadow: 0 15px 30px rgba(109, 76, 65, 0.2);
+}
+
+/* --- Lightbox / Carousel Styling --- */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(45, 35, 30, 0.95);
+    backdrop-filter: blur(8px);
+    justify-content: center; align-items: center;
+}
+.lightbox-content { max-width: 85%; max-height: 70%; display: flex; justify-content: center; animation: zoomIn 0.4s ease; }
+.lightbox-content img { max-width: 100%; max-height: 100%; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 2px solid var(--boho-tan); }
+
+.nav-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: white; font-size: 2.5rem; cursor: pointer; padding: 20px; z-index: 3010;
+}
+.prev { left: 5px; }
+.next { right: 5px; }
+.close-btn { position: absolute; top: 30px; right: 30px; color: white; font-size: 2.5rem; cursor: pointer; }
+
+/* Global Animations */
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Rest of existing components... */
+.venue-address { font-size: 0.9rem; line-height: 1.6; color: var(--dark-brown); margin: 15px 0; }
+.venue-box { background: #faf7f2; width: 240px; padding: 15px; border-radius: 20px; border: 1px dashed var(--boho-tan); font-size: 0.8rem; color: var(--dark-brown); font-weight: 600; }
+.map-link { text-decoration: none; }
 .wear-description { font-size: 0.85rem; color: var(--dark-brown); margin-bottom: 20px; }
 .palette-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
 .swatch { width: 45px; height: 45px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 .wear-tip { font-size: 0.65rem; letter-spacing: 2px; color: var(--boho-tan); font-weight: 600; }
-
-/* Global components */
 .countdown-container { display: flex; justify-content: center; gap: 8px; margin: 15px 0; }
 .time-box { background: #fff; border: 1px solid var(--soft-white); padding: 8px; border-radius: 12px; min-width: 55px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
 .time-box span { display: block; font-size: 1.1rem; font-weight: 600; color: var(--dark-brown); }
 .time-box small { font-size: 0.5rem; color: var(--boho-tan); text-transform: uppercase; }
 .actual-date { font-weight: 400; font-size: 0.75rem; color: var(--dark-brown); letter-spacing: 2px; text-transform: uppercase; }
-
 .tabs { display: flex; justify-content: center; gap: 15px; margin: 20px 0; width: 100%; border-bottom: 1px solid #f2f2f2; }
 .tab-link { background: none; border: none; font-size: 0.65rem; padding: 10px 5px; color: var(--boho-tan); cursor: pointer; text-transform: uppercase; letter-spacing: 1.5px; }
 .tab-link.active { color: var(--dark-brown); font-weight: 600; border-bottom: 2px solid var(--boho-gold); }
-
-.image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 280px; }
-.img-box { background: #faf7f2; height: 110px; border-radius: 20px; display: flex; align-items: center; justify-content: center; border: 1px solid #f0ece6; font-size: 1.2rem; }
-
-/* Intro Envelope */
 .envelope-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--soft-white); display: flex; justify-content: center; align-items: center; z-index: 2000; transition: 1s ease; }
 .envelope { width: 280px; height: 180px; background: var(--boho-tan); position: relative; border-radius: 4px; cursor: pointer; }
 .flap { position: absolute; top: 0; width: 0; height: 0; border-left: 140px solid transparent; border-right: 140px solid transparent; border-top: 100px solid var(--boho-tan); transform-origin: top; transition: 0.4s; z-index: 4; }
 .pocket { position: absolute; bottom: 0; width: 100%; height: 100%; background: #a38f85; clip-path: polygon(0 40%, 50% 100%, 100% 40%, 100% 100%, 0 100%); z-index: 3; }
 .letter { position: absolute; bottom: 5px; left: 10px; width: 260px; height: 170px; background: white; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 2; border-radius: 2px; padding: 10px; }
 .heart { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 35px; color: white; z-index: 5; }
-
 .elegant-text { font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: var(--dark-brown); margin: 0; }
 .elegant-subtitle { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--boho-tan); margin-top: 10px; font-weight: 600; }
 .tap-hint { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 1px; color: #ccc; margin-top: 15px; }
-
 .envelope:hover .flap { transform: rotateX(180deg); }
 .envelope:hover .letter { transform: translateY(-60px); }
-
 footer { padding: 20px 30px; }
 .rsvp-button { background: var(--dark-brown); color: white; width: 100%; padding: 18px; border-radius: 40px; border: none; font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; box-shadow: 0 10px 25px rgba(109, 76, 65, 0.2); }
-
 .moving-element { position: fixed; pointer-events: none; z-index: 1; animation: floatUp linear forwards; }
 @keyframes floatUp { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 20% { opacity: 0.3; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }

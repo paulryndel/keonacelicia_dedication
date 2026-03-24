@@ -43,8 +43,8 @@
 
         <nav class="tabs">
             <button class="tab-link active" onclick="openTab(event, 'photos')">Blessings</button>
-            <button class="tab-link" onclick="openTab(event, 'venue')">Venue</button>
-            <button class="tab-link" onclick="openTab(event, 'wear')">Attire</button>
+            <button class="tab-link" onclick="event.stopPropagation(); openTab(event, 'venue')">Venue</button>
+            <button class="tab-link" onclick="event.stopPropagation(); openTab(event, 'wear')">Attire</button>
         </nav>
 
         <div class="card-scroll-area">
@@ -52,10 +52,26 @@
                 
                 <section id="photos" class="tab-content active">
                     <p class="dedication-quote">“God blessed us with two beautiful lives, and today we lovingly dedicate them to Him, placing their future in His faithful hands.”</p>
-                    <div class="image-grid">
-                        <div class="img-box">🕊️</div>
-                        <div class="img-box">🕊️</div>
+                    
+                    <div class="twin-grid">
+                        <div class="twin-column">
+                            <span class="column-label">Keona Hana</span>
+                            <div class="img-box clickable" onclick="openLightbox(0)"><img src="keona1.jpg" alt="Keona 1"></div>
+                            <div class="img-box clickable" onclick="openLightbox(1)"><img src="keona2.jpg" alt="Keona 2"></div>
+                            <div class="img-box clickable" onclick="openLightbox(2)"><img src="keona3.jpg" alt="Keona 3"></div>
+                            <div class="img-box clickable" onclick="openLightbox(3)"><img src="keona4.jpg" alt="Keona 4"></div>
+                            <div class="img-box clickable" onclick="openLightbox(4)"><img src="keona5.jpg" alt="Keona 5"></div>
+                        </div>
+                        <div class="twin-column">
+                            <span class="column-label">Celicia Hana</span>
+                            <div class="img-box clickable" onclick="openLightbox(5)"><img src="celicia1.jpg" alt="Celicia 1"></div>
+                            <div class="img-box clickable" onclick="openLightbox(6)"><img src="celicia2.jpg" alt="Celicia 2"></div>
+                            <div class="img-box clickable" onclick="openLightbox(7)"><img src="celicia3.jpg" alt="Celicia 3"></div>
+                            <div class="img-box clickable" onclick="openLightbox(8)"><img src="celicia4.jpg" alt="Celicia 4"></div>
+                            <div class="img-box clickable" onclick="openLightbox(9)"><img src="celicia5.jpg" alt="Celicia 5"></div>
+                        </div>
                     </div>
+
                     <p class="scripture-text">“For this child we prayed, and the Lord has granted our request.”</p>
                     <p class="scripture-ref">1 SAMUEL 1:27</p>
                 </section>
@@ -90,6 +106,15 @@
         <footer>
             <button class="rsvp-button">CONFIRM ATTENDANCE</button>
         </footer>
+    </div>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-btn">×</span>
+        <button class="nav-btn prev" onclick="changeSlide(-1, event)">❮</button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Enlarged view">
+        </div>
+        <button class="nav-btn next" onclick="changeSlide(1, event)">❯</button>
     </div>
 
     <script src="script.js"></script>

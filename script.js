@@ -21,7 +21,7 @@ function createFlowerExplosion() {
     for (let i = 0; i < 45; i++) {
         particles.push({
             x: canvas.width / 2, y: canvas.height / 2,
-            vx: (Math.random() - 0.5) * 12, vy: (Math.random() - 0.5) * 12,
+            vx: (Math.random() - 0.5) * 10, vy: (Math.random() - 0.5) * 10,
             size: Math.random() * 15 + 10,
             color: ['#6d4c41', '#bcaaa4', '#d4a373', '#ffffff'][Math.floor(Math.random() * 4)]
         });
@@ -32,11 +32,13 @@ function createFlowerExplosion() {
 function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach((p, i) => {
-        p.x += p.vx; p.y += p.vy; p.vy += 0.15;
+        p.x += p.vx; 
+        p.y += p.vy; 
+        p.vy += 0.04; // Reduced gravity for a slower, floating descent
         ctx.fillStyle = p.color;
         ctx.font = p.size + 'px serif';
         ctx.fillText('✿', p.x, p.y);
-        if (p.y > canvas.height) particles.splice(i, 1);
+        if (p.y > canvas.height || p.x < 0 || p.x > canvas.width) particles.splice(i, 1);
     });
     if (particles.length > 0) requestAnimationFrame(animateParticles);
 }
@@ -85,4 +87,57 @@ function openTab(evt, tabId) {
     for (let l of links) l.classList.remove("active");
     document.getElementById(tabId).style.display = "flex";
     evt.currentTarget.classList.add("active");
+}
+
+window.addEventListener('mousedown', (e) => {
+    if(e.target.closest('.tab-link') || e.target.closest('.rsvp-button')) return; 
+    spawnFlowers(e.clientX, e.clientY);
+});
+
+window.addEventListener('touchstart', (e) => {
+    if(e.target.closest('.tab-link') || e.target.closest('.rsvp-button')) return;
+    spawnFlowers(e.touches.clientX, e.touches.clientY);
+});
+
+function spawnFlowers(x, y) {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    // Increased particle count slightly for more emphasis
+    for (let i = 0; i < 8; i++) {
+        particles.push({
+            x: x, y: y,
+            // Slower initial "pop" velocity
+            vx: (Math.random() - 0.5) * 4, 
+            vy: (Math.random() - 0.5) * 4 - 1,
+            size: Math.random() * 14 + 12,
+            color: ['#6d4c41', '#bcaaa4', '#d4a373', '#ffffff'][Math.floor(Math.random() * 4)]
+        });
+    }
+    animateParticles();
+}
+
+let currentImageIndex = 0;
+const allImages = [
+    'keona1.jpg', 'keona2.jpg', 'keona3.jpg', 'keona4.jpg', 'keona5.jpg',
+    'celicia1.jpg', 'celicia2.jpg', 'celicia3.jpg', 'celicia4.jpg', 'celicia5.jpg'
+];
+
+function openLightbox(index) {
+    currentImageIndex = index;
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = allImages[currentImageIndex];
+    lightbox.style.display = 'flex';
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+}
+
+function changeSlide(direction, event) {
+    event.stopPropagation();
+    currentImageIndex += direction;
+    if (currentImageIndex >= allImages.length) currentImageIndex = 0;
+    if (currentImageIndex < 0) currentImageIndex = allImages.length - 1;
+    document.getElementById('lightbox-img').src = allImages[currentImageIndex];
 }
