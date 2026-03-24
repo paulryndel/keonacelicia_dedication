@@ -79,14 +79,7 @@ html, body {
     animation: zoomIn 0.8s ease backwards;
 }
 
-.img-box.clickable:nth-child(2) { animation-delay: 0.1s; }
-.img-box.clickable:nth-child(3) { animation-delay: 0.2s; }
-.img-box.clickable:nth-child(4) { animation-delay: 0.3s; }
-.img-box.clickable:nth-child(5) { animation-delay: 0.4s; }
-.img-box.clickable:nth-child(6) { animation-delay: 0.5s; }
-
 .img-box img { width: 100%; height: 100%; object-fit: cover; }
-
 .img-box.clickable:hover { 
     transform: translateY(-5px) scale(1.02); 
     box-shadow: 0 15px 30px rgba(109, 76, 65, 0.2);
@@ -137,7 +130,6 @@ html, body {
 .wish-text { font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: var(--dark-brown); margin: 0 0 5px 0; }
 .wish-author { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--boho-tan); font-weight: 600; }
 
-/* --- Gift Tab Styles --- */
 .gift-message { font-size: 0.8rem; line-height: 1.6; color: var(--dark-brown); margin: 0 30px 25px 30px; max-width: 280px; }
 .qr-container { 
     background: #fff; 
@@ -150,7 +142,32 @@ html, body {
     align-items: center; 
     gap: 15px;
 }
+.qr-container.clickable { cursor: pointer; transition: 0.3s; }
+.qr-container.clickable:hover { transform: scale(1.02); border-color: var(--boho-gold); }
 .qr-image { width: 180px; height: 180px; border-radius: 10px; object-fit: contain; }
+
+.invitation-card-design {
+    width: 600px; height: 850px; background-color: var(--soft-white);
+    padding: 40px; display: flex; justify-content: center; align-items: center;
+}
+.card-border {
+    width: 100%; height: 100%; border: 3px solid var(--boho-tan);
+    border-radius: 30px; padding: 40px; text-align: center;
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: center; color: var(--dark-brown);
+}
+.card-top-text { font-size: 18px; text-transform: uppercase; letter-spacing: 5px; color: var(--boho-tan); margin: 10px 0; }
+.card-main-title { font-family: 'Dancing Script', cursive; font-size: 55px; color: var(--boho-gold); margin: 20px 0; }
+.card-names-box { border-top: 2px solid #eee; border-bottom: 2px solid #eee; padding: 30px 0; margin: 30px 0; width: 100%; }
+.card-twin-name { font-size: 32px; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; }
+.card-and { font-family: 'Dancing Script', cursive; font-size: 40px; color: var(--boho-gold); }
+.card-date-label { font-size: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 4px; }
+.card-date-main { font-size: 42px; font-weight: 300; color: var(--boho-gold); margin: 10px 0; }
+.card-venue-box { background: #faf7f2; padding: 25px; border-radius: 20px; margin: 30px 0; border: 1px dashed var(--boho-tan); }
+.card-venue-name { font-size: 22px; font-weight: 600; margin-bottom: 5px; }
+.card-venue-sub { font-size: 18px; color: var(--boho-tan); }
+.card-footer-script { font-family: 'Dancing Script', cursive; font-size: 28px; color: var(--boho-gold); margin-top: 30px; }
+.card-flower { font-size: 60px; color: var(--boho-gold); margin-top: 10px; }
 
 .venue-address { font-size: 0.9rem; line-height: 1.6; color: var(--dark-brown); margin: 15px 0; }
 .venue-box { background: #faf7f2; width: 240px; padding: 15px; border-radius: 20px; border: 1px dashed var(--boho-tan); font-size: 0.8rem; color: var(--dark-brown); font-weight: 600; }

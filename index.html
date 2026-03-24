@@ -6,6 +6,7 @@
     <title>Keona & Celicia | Blessed & Dedicated</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -24,6 +25,30 @@
 
     <canvas id="flower-fireworks"></canvas>
 
+    <div id="hidden-card-container" style="position: absolute; left: -9999px;">
+        <div id="aesthetic-card" class="invitation-card-design">
+            <div class="card-border">
+                <p class="card-top-text">You are invited to the</p>
+                <h1 class="card-main-title">Dedication Ceremony</h1>
+                <p class="card-top-text">of our beloved twins</p>
+                <div class="card-names-box">
+                    <h2 class="card-twin-name">Keona Hana</h2>
+                    <p class="card-and">&</p>
+                    <h2 class="card-twin-name">Celicia Hana</h2>
+                </div>
+                <p class="card-date-label">Tuesday</p>
+                <p class="card-date-main">April 14, 2026</p>
+                <p class="card-date-label">at 10:00 AM</p>
+                <div class="card-venue-box">
+                    <p class="card-venue-name">MJN Farm and Cafe</p>
+                    <p class="card-venue-sub">Baikingon, Cagayan De Oro City</p>
+                </div>
+                <p class="card-footer-script">We request the honor of your presence.</p>
+                <div class="card-flower">✿</div>
+            </div>
+        </div>
+    </div>
+
     <div id="main-site" class="main-container hidden">
         <div id="floating-bg-layer"></div>
         
@@ -39,6 +64,10 @@
                 <div class="time-box"><span id="secs">00</span><small>Sec</small></div>
             </div>
             <p class="actual-date">Tuesday | April 14, 2026</p>
+
+            <button class="submit-wish" style="margin-top: 10px; padding: 8px 20px; background: transparent; border: 1px solid var(--boho-tan); color: var(--boho-tan);" onclick="downloadCard()">
+                📥 Save Invitation
+            </button>
         </header>
 
         <nav class="tabs">
@@ -54,26 +83,34 @@
                 
                 <section id="photos" class="tab-content active">
                     <p class="dedication-quote">“God blessed us with two beautiful lives, and today we lovingly dedicate them to Him, placing their future in His faithful hands.”</p>
-                    
                     <div class="twin-grid">
                         <div class="twin-column">
                             <span class="column-label">Keona Hana</span>
-                            <div class="img-box clickable" onclick="openLightbox(0)"><img src="images/keona1.jpg" alt="Keona 1"></div>
-                            <div class="img-box clickable" onclick="openLightbox(1)"><img src="images/keona2.jpg" alt="Keona 2"></div>
-                            <div class="img-box clickable" onclick="openLightbox(2)"><img src="images/keona3.jpg" alt="Keona 3"></div>
-                            <div class="img-box clickable" onclick="openLightbox(3)"><img src="images/keona4.jpg" alt="Keona 4"></div>
-                            <div class="img-box clickable" onclick="openLightbox(4)"><img src="images/keona5.jpg" alt="Keona 5"></div>
+                            <div class="img-box clickable" onclick="openLightbox(0)"><img src="images/keona1.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(1)"><img src="images/keona2.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(2)"><img src="images/keona3.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(3)"><img src="images/keona4.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(4)"><img src="images/keona5.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(5)"><img src="images/keona6.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(6)"><img src="images/keona7.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(7)"><img src="images/keona8.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(8)"><img src="images/keona9.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(9)"><img src="images/keona10.jpg"></div>
                         </div>
                         <div class="twin-column">
                             <span class="column-label">Celicia Hana</span>
-                            <div class="img-box clickable" onclick="openLightbox(5)"><img src="images/celicia1.jpg" alt="Celicia 1"></div>
-                            <div class="img-box clickable" onclick="openLightbox(6)"><img src="images/celicia2.jpg" alt="Celicia 2"></div>
-                            <div class="img-box clickable" onclick="openLightbox(7)"><img src="images/celicia3.jpg" alt="Celicia 3"></div>
-                            <div class="img-box clickable" onclick="openLightbox(8)"><img src="images/celicia4.jpg" alt="Celicia 4"></div>
-                            <div class="img-box clickable" onclick="openLightbox(9)"><img src="images/celicia5.jpg" alt="Celicia 5"></div>
+                            <div class="img-box clickable" onclick="openLightbox(10)"><img src="images/celicia1.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(11)"><img src="images/celicia2.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(12)"><img src="images/celicia3.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(13)"><img src="images/celicia4.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(14)"><img src="images/celicia5.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(15)"><img src="images/celicia6.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(16)"><img src="images/celicia7.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(17)"><img src="images/celicia8.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(18)"><img src="images/celicia9.jpg"></div>
+                            <div class="img-box clickable" onclick="openLightbox(19)"><img src="images/celicia10.jpg"></div>
                         </div>
                     </div>
-
                     <p class="scripture-text">“For this child we prayed, and the Lord has granted our request.”</p>
                     <p class="scripture-ref">1 SAMUEL 1:27</p>
                 </section>
@@ -99,6 +136,20 @@
                             <div class="swatch" style="background: #ffffff; border: 1px solid #ddd;"></div>
                         </div>
                         <p class="wear-tip">BROWN • TAN • GOLD • WHITE</p>
+                        
+                        <div style="margin-top:25px; width: 100%; max-width: 320px;">
+                            <p class="column-label" style="margin-bottom:10px;">Women's Inspiration</p>
+                            <div class="twin-grid" style="grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+                                <div class="img-box clickable" onclick="openLightbox(21)"><img src="images/sample_boho1.jpg"></div>
+                                <div class="img-box clickable" onclick="openLightbox(22)"><img src="images/sample_boho2.jpg"></div>
+                            </div>
+                            
+                            <p class="column-label" style="margin-bottom:10px;">Men's Inspiration</p>
+                            <div class="twin-grid" style="grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div class="img-box clickable" onclick="openLightbox(23)"><img src="images/sample_boho3.jpg"></div>
+                                <div class="img-box clickable" onclick="openLightbox(24)"><img src="images/sample_boho4.jpg"></div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -118,9 +169,9 @@
                     <div class="center-stack">
                         <h3 class="elegant-text">Love & Generosity</h3>
                         <p class="gift-message">Your presence at our twins' dedication is the greatest gift of all. However, should you wish to honor Keona and Celicia with a token of love, the KC Twins are very open to accepting donations as they begin their journey of faith. <br><br><b>Every blessing is deeply appreciated.</b></p>
-                        <div class="qr-container">
+                        <div class="qr-container clickable" onclick="openLightbox(20)">
                             <img src="images/qrcode.jpg" alt="Gift QR Code" class="qr-image">
-                            <p class="wear-tip">SCAN TO SEND A GIFT</p>
+                            <p class="wear-tip">TAP TO ENLARGE & SCAN</p>
                         </div>
                     </div>
                 </section>

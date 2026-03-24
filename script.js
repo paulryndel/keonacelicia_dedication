@@ -8,7 +8,7 @@ function openEnvelope() {
         mainSite.classList.remove('hidden');
         setTimeout(() => mainSite.style.opacity = '1', 50);
         startContinuousMagic();
-        loadWishes(); 
+        loadWishes();
     }, 1000);
 }
 
@@ -35,7 +35,7 @@ function animateParticles() {
     particles.forEach((p, i) => {
         p.x += p.vx; 
         p.y += p.vy; 
-        p.vy += 0.04; 
+        p.vy += 0.04;
         ctx.fillStyle = p.color;
         ctx.font = p.size + 'px serif';
         ctx.fillText('✿', p.x, p.y);
@@ -116,10 +116,13 @@ function spawnFlowers(x, y) {
 }
 
 let currentImageIndex = 0;
-/* Photos are now sourced from the images/ folder */
 const allImages = [
     'images/keona1.jpg', 'images/keona2.jpg', 'images/keona3.jpg', 'images/keona4.jpg', 'images/keona5.jpg',
-    'images/celicia1.jpg', 'images/celicia2.jpg', 'images/celicia3.jpg', 'images/celicia4.jpg', 'images/celicia5.jpg'
+    'images/keona6.jpg', 'images/keona7.jpg', 'images/keona8.jpg', 'images/keona9.jpg', 'images/keona10.jpg',
+    'images/celicia1.jpg', 'images/celicia2.jpg', 'images/celicia3.jpg', 'images/celicia4.jpg', 'images/celicia5.jpg',
+    'images/celicia6.jpg', 'images/celicia7.jpg', 'images/celicia8.jpg', 'images/celicia9.jpg', 'images/celicia10.jpg',
+    'images/qrcode.jpg',
+    'images/sample_boho1.jpg', 'images/sample_boho2.jpg', 'images/sample_boho3.jpg', 'images/sample_boho4.jpg'
 ];
 
 function openLightbox(index) {
@@ -150,35 +153,37 @@ function goToWishes() {
 function saveWish() {
     const nameInput = document.getElementById('guest-name');
     const messageInput = document.getElementById('guest-message');
-    
     if (nameInput.value.trim() === "" || messageInput.value.trim() === "") {
         alert("Please fill in your name and message! ✨");
         return;
     }
-
-    const newWish = {
-        name: nameInput.value,
-        message: messageInput.value,
-        date: new Date().toLocaleDateString()
-    };
-
+    const newWish = { name: nameInput.value, message: messageInput.value, date: new Date().toLocaleDateString() };
     let existingWishes = JSON.parse(localStorage.getItem('twinsWishes')) || [];
     existingWishes.unshift(newWish);
     localStorage.setItem('twinsWishes', JSON.stringify(existingWishes));
-
-    nameInput.value = "";
-    messageInput.value = "";
-    loadWishes();
+    nameInput.value = ""; messageInput.value = ""; loadWishes();
 }
 
 function loadWishes() {
     const container = document.getElementById('comments-display');
     const existingWishes = JSON.parse(localStorage.getItem('twinsWishes')) || [];
-    
     container.innerHTML = existingWishes.map(wish => `
         <div class="wish-card">
             <p class="wish-text">"${wish.message}"</p>
             <p class="wish-author">— ${wish.name}</p>
         </div>
     `).join('');
+}
+
+function downloadCard() {
+    const card = document.getElementById('aesthetic-card');
+    const container = document.getElementById('hidden-card-container');
+    container.style.left = "0"; container.style.top = "0";
+    html2canvas(card, { scale: 2, backgroundColor: null }).then(canvas => {
+        container.style.left = "-9999px";
+        const link = document.createElement('a');
+        link.download = 'KC-Twins-Invitation.jpg';
+        link.href = canvas.toDataURL("image/jpeg", 0.9);
+        link.click();
+    });
 }
