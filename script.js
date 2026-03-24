@@ -1,3 +1,4 @@
+fullText:
 function openEnvelope() {
     const overlay = document.getElementById('envelope-overlay');
     const mainSite = document.getElementById('main-site');
@@ -222,15 +223,10 @@ function loadWishes() {
     `).join('');
 }
 
+// Updated downloadCard function to use the specific static image
 function downloadCard() {
-    const card = document.getElementById('aesthetic-card');
-    const container = document.getElementById('hidden-card-container');
-    container.style.left = "0"; container.style.top = "0";
-    html2canvas(card, { scale: 2, backgroundColor: null }).then(canvas => {
-        container.style.left = "-9999px";
-        const link = document.createElement('a');
-        link.download = 'KC-Twins-Invitation.jpg';
-        link.href = canvas.toDataURL("image/jpeg", 0.9);
-        link.click();
-    });
+    const link = document.createElement('a');
+    link.download = 'KC-Twins-Invitation.jpg';
+    link.href = 'images/invitation_card.jpg'; // Path to the static aesthetic image
+    link.click();
 }
