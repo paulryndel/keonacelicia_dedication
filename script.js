@@ -120,7 +120,7 @@ function startContinuousMagic() {
     }, 1500);
 }
 
-const targetDate = new Date("April 14, 2026 10:00:00").getTime();
+const targetDate = new Date("April 17, 2026 13:00:00").getTime();
 function updateCountdown() {
     const now = new Date().getTime();
     const diff = targetDate - now;
